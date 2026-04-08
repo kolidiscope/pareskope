@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta property="og:title" content="FAQ - Pareskope">
+  <meta property="og:description" content="Frequently asked questions about Pareskope's platform, integration, security, and support.">
+  <meta property="og:url" content="https://www.pareskope.com/faq">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>FAQ - Pareskope</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1120;
+      color: #e8edf5;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: rgba(20, 29, 48, 0.5);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1c2940;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 700;
+      color: #e8edf5;
+      font-size: 1.25rem;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      margin-right: 0.5rem;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #8892a4;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #10b981;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      text-align: center;
+      border-bottom: 1px solid #1c2940;
+      padding-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: #8892a4;
+      font-size: 1rem;
+    }
+
+    /* FAQ Categories */
+    .faq-category {
+      margin-bottom: 3rem;
+    }
+
+    .faq-category h2 {
+      font-size: 1.5rem;
+      color: #e8edf5;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #10b981;
+      padding-left: 1rem;
+    }
+
+    /* Accordion */
+    .accordion-item {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .accordion-item:hover {
+      border-color: #10b981;
+    }
+
+    .accordion-header {
+      width: 100%;
+      padding: 1.25rem;
+      background-color: #141d30;
+      border: none;
+      color: #e8edf5;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .accordion-header:hover {
+      background-color: rgba(16, 185, 129, 0.05);
+      color: #10b981;
+    }
+
+    .accordion-toggle {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10b981;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .accordion-item.active .accordion-toggle {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1.25rem;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 500px;
+      padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+
+    .accordion-content p {
+      color: #8892a4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .accordion-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .accordion-content ul {
+      color: #8892a4;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .accordion-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .cta-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #e8edf5;
+    }
+
+    .cta-section p {
+      color: #8892a4;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f1622;
+      border-top: 1px solid #1c2940;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1c2940;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: #8892a4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #10b981;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #8892a4;
+      font-size: 0.85rem;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 1.5rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .accordion-header {
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="Pareskope Logo">
+      Pareskope
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/opensource">Open Source</a></li>
+      <li><a href="/security">Security</a></li>
+    </ul>
+    <a href="/" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Frequently Asked Questions</h1>
+      <p>Got questions? We've got answers. Click any question below to learn more about Pareskope.</p>
+    </div>
+
+    <!-- Platform & Product Section -->
+    <div class="faq-category">
+      <h2>Platform & Product</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What is Pareskope and what does it do?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope is a SaaS platform designed for financial data vendors to streamline the management and delivery of financial data to researchers and institutions. It provides a modern infrastructure for data hosting, access control, and watermarked distribution, enabling vendors to monetize financial datasets securely and efficiently.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Who is Pareskope designed for?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope is built for financial data vendors—companies and organizations that collect, curate, and distribute financial market data, alternative data, and research datasets. We serve vendors ranging from boutique data providers to large financial technology firms seeking a secure, modern platform for data delivery.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What types of studies or research can researchers conduct with Pareskope?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Researchers can conduct academic studies, quantitative analysis, market research, backtesting, risk analysis, and other financial research leveraging historical and real-time financial data. Pareskope's watermarking and access controls ensure compliance with licensing agreements while enabling powerful analytical workflows.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>How does Pareskope help optimize research workflows?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope streamlines research by providing instant data access, granular access controls, audit logging, and comprehensive monitoring. Researchers can focus on their analysis while vendors maintain control over data usage, compliance, and intellectual property through automated watermarking and detailed usage tracking.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What monitoring and visibility does Pareskope provide?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope provides comprehensive monitoring across data access, downloads, and usage patterns. Vendors can see real-time dashboards of data consumption, identify trends in researcher behavior, and access detailed audit logs for compliance and billing purposes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Onboarding & Integration Section -->
+    <div class="faq-category">
+      <h2>Onboarding & Integration</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What is the typical onboarding timeline?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Most vendors are operational within 2-4 weeks from contract signature. Our onboarding team handles data ingestion setup, access control configuration, and user provisioning. For vendors with complex data structures or integration requirements, we may extend support through a managed onboarding engagement.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What data formats does Pareskope support?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope supports a wide range of formats including CSV, Parquet, HDF5, NetCDF, and proprietary binary formats. We can ingest data from databases, APIs, and file systems. Our flexible data pipeline can accommodate custom formats with proper documentation and schema definition.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>How do researchers integrate Pareskope data into their workflows?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Researchers access data through Pareskope's web interface and SFTP protocols. They can download datasets, access via APIs, and integrate with their existing tools and workflows. We provide comprehensive documentation and SDKs to simplify integration with popular research frameworks.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Can Pareskope integrate with our existing systems and APIs?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Yes. Pareskope can integrate with existing data pipelines, data warehouses, and internal systems via APIs, webhooks, and ETL connectors. Our engineering team works with you to design custom integrations that fit your infrastructure and data workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security & Compliance Section -->
+    <div class="faq-category">
+      <h2>Security & Compliance</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>How does Pareskope protect sensitive financial data?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope employs multi-layered security: data is encrypted at rest using AES-256, in transit with TLS 1.3, and logically isolated by tenant. We implement role-based access controls, multi-factor authentication, and comprehensive audit logging. All infrastructure is hosted on secure cloud platforms with regular security assessments.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Are researchers' data isolated from other customers?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Yes. Pareskope implements strict tenant isolation at both the application and database levels. Each vendor's data is logically segregated, and network segmentation prevents cross-tenant access. Researchers can only access datasets explicitly granted to them via our access control system.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Does Pareskope publish a Software Bill of Materials (SBOM)?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Yes. Pareskope publishes a comprehensive SBOM documenting all open source components, dependencies, versions, and licenses. The SBOM is updated regularly and available for audit to ensure transparency and compliance with security standards. <a href="/opensource" style="color: #0ea5e9; text-decoration: none;">View our SBOM and open source attributions.</a></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What are Pareskope's SDLC practices?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope follows industry-standard SDLC practices including version control, mandatory code review, automated testing, staging validation, containerized deployments, and continuous monitoring. Learn more about our complete <a href="/security" style="color: #0ea5e9; text-decoration: none;">security practices and SDLC processes.</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial & Support Section -->
+    <div class="faq-category">
+      <h2>Commercial & Support</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>How is Pareskope priced and licensed?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope pricing is customized based on data volume, number of researchers, and support level. Pricing is established through a Master Service Agreement (MSA) tailored to your business model, whether usage-based, subscription, or hybrid. Contact our sales team for a personalized quote.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>What support does Pareskope provide?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope offers tiered support ranging from email support to dedicated technical account managers. All plans include onboarding assistance, documentation, and access to our support portal. Premium tiers include priority support, quarterly business reviews, and custom development.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          <span>Does Pareskope offer managed hosting or on-premise deployment?</span>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <p>Pareskope is offered as a secure SaaS platform with multi-tenant or dedicated deployment options. For specialized compliance requirements, we can discuss private cloud or on-premise deployment scenarios. Contact our team to explore custom deployment models.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h3>Still have questions?</h3>
+      <p>Our team is here to help! Reach out to discuss your specific use case, integration requirements, or technical questions.</p>
+      <a href="#" data-ct="show" class="cta-button">Contact Our Team</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Company</strong>
+        <a href="/">Home</a>
+        <a href="/opensource">Open Source</a>
+        <a href="/security">Security</a>
+      </div>
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Legal</strong>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
+        <a href="#" data-ct="show">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pareskope. A Kolidiscope, Inc. company.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var item = this.closest('.accordion-item');
+        var isActive = item.classList.contains('active');
+
+        // Close all accordions
+        document.querySelectorAll('.accordion-item').forEach(function(el) {
+          el.classList.remove('active');
+        });
+
+        // Open clicked accordion if it wasn't open
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Email obfuscation
+    (function(){
+      var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;
+      document.querySelectorAll('a[data-ct]').forEach(function(a){
+        a.href=m;
+        if(a.dataset.ct==='show')a.textContent=e;
+      });
+    })();
+  </script>
+</body>
+</html>

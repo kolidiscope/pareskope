@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta property="og:title" content="Open Source Attributions - Pareskope">
+  <meta property="og:description" content="Open source components and licenses used in Pareskope.">
+  <meta property="og:url" content="https://www.pareskope.com/opensource">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Open Source Attributions - Pareskope</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1120;
+      color: #e8edf5;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: rgba(20, 29, 48, 0.5);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1c2940;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 700;
+      color: #e8edf5;
+      font-size: 1.25rem;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      margin-right: 0.5rem;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #8892a4;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #10b981;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #1c2940;
+      padding-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: #8892a4;
+      font-size: 1rem;
+    }
+
+    /* Notice Section */
+    .notice-section {
+      background-color: rgba(16, 185, 129, 0.05);
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .notice-section h3 {
+      color: #10b981;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .notice-section p {
+      color: #8892a4;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Table Section */
+    .table-section {
+      margin-bottom: 3rem;
+    }
+
+    .table-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #e8edf5;
+    }
+
+    .components-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .components-table thead {
+      background-color: rgba(16, 185, 129, 0.1);
+      border-bottom: 1px solid #1c2940;
+    }
+
+    .components-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #10b981;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .components-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #1c2940;
+      color: #e8edf5;
+    }
+
+    .components-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .components-table tr:hover {
+      background-color: rgba(16, 185, 129, 0.05);
+    }
+
+    .license-badge {
+      display: inline-block;
+      background-color: #1c2940;
+      color: #10b981;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid #10b981;
+    }
+
+    .component-link {
+      color: #0ea5e9;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .component-link:hover {
+      color: #10b981;
+      text-decoration: underline;
+    }
+
+    /* Detail Cards */
+    .detail-cards-section {
+      margin-top: 3rem;
+    }
+
+    .detail-cards-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #e8edf5;
+    }
+
+    .detail-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .component-card {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .component-card:hover {
+      border-color: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+    }
+
+    .component-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #e8edf5;
+    }
+
+    .component-card .spdx-id {
+      display: inline-block;
+      background-color: #1c2940;
+      color: #10b981;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 1rem;
+      border: 1px solid #10b981;
+    }
+
+    .component-card p {
+      color: #8892a4;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .component-card a {
+      color: #0ea5e9;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .component-card a:hover {
+      color: #10b981;
+      text-decoration: underline;
+    }
+
+    .updated-date {
+      color: #8892a4;
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f1622;
+      border-top: 1px solid #1c2940;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1c2940;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: #8892a4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #10b981;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #8892a4;
+      font-size: 0.85rem;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      main {
+        padding: 1.5rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .detail-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .components-table {
+        font-size: 0.85rem;
+      }
+
+      .components-table th,
+      .components-table td {
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="Pareskope Logo">
+      Pareskope
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/opensource">Open Source</a></li>
+      <li><a href="/security">Security</a></li>
+    </ul>
+    <a href="/" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Open Source Attribution</h1>
+      <p>Pareskope is built on the shoulders of excellent open source projects. We're grateful for these contributions to the community.</p>
+    </div>
+
+    <div class="notice-section">
+      <h3>Legal Notice</h3>
+      <p>Pareskope incorporates and extends open source software licensed under various licenses, including BSD-3-Clause, Apache-2.0, and PSF-2.0. All dependencies maintain their original licenses and copyright notices. For detailed license terms, please refer to the license links provided below.</p>
+    </div>
+
+    <div class="table-section">
+      <h2>Component Overview</h2>
+      <table class="components-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Version</th>
+            <th>License</th>
+            <th>SPDX ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Python</strong></td>
+            <td>3.14</td>
+            <td><span class="license-badge">PSF-2.0</span></td>
+            <td><code style="color: #8892a4;">Python-3.14</code></td>
+          </tr>
+          <tr>
+            <td><strong>Flask</strong></td>
+            <td>3.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>scikit-learn</strong></td>
+            <td>1.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>NumPy</strong></td>
+            <td>2.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>pandas</strong></td>
+            <td>2.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>SciPy</strong></td>
+            <td>1.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>joblib</strong></td>
+            <td>1.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>XGBoost</strong></td>
+            <td>2.x</td>
+            <td><span class="license-badge">Apache-2.0</span></td>
+            <td><code style="color: #8892a4;">Apache-2.0</code></td>
+          </tr>
+          <tr>
+            <td><strong>Docker</strong></td>
+            <td>24.x</td>
+            <td><span class="license-badge">Apache-2.0</span></td>
+            <td><code style="color: #8892a4;">Apache-2.0</code></td>
+          </tr>
+          <tr>
+            <td><strong>Seaborn</strong></td>
+            <td>0.x</td>
+            <td><span class="license-badge">BSD-3-Clause</span></td>
+            <td><code style="color: #8892a4;">BSD-3-Clause</code></td>
+          </tr>
+          <tr>
+            <td><strong>Matplotlib</strong></td>
+            <td>3.x</td>
+            <td><span class="license-badge">PSF-2.0</span></td>
+            <td><code style="color: #8892a4;">PSF-2.0</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="detail-cards-section">
+      <h2>Detailed Licenses</h2>
+      <div class="detail-cards-grid">
+        <div class="component-card">
+          <h3>Python</h3>
+          <div class="spdx-id">Python-3.14</div>
+          <p>The Python programming language runtime and standard library, licensed under the Python Software Foundation License.</p>
+          <a href="https://github.com/python/cpython/blob/main/LICENSE" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>Flask</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>A lightweight WSGI web application framework for building APIs and web applications with minimal overhead.</p>
+          <a href="https://github.com/pallets/flask/blob/main/LICENSE.txt" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>scikit-learn</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Machine learning library for classical algorithms including classification, regression, clustering, and dimensionality reduction.</p>
+          <a href="https://github.com/scikit-learn/scikit-learn/blob/main/COPYING" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>NumPy</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Fundamental package for numerical computing in Python, providing support for large arrays and matrices.</p>
+          <a href="https://github.com/numpy/numpy/blob/main/LICENSE.txt" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>pandas</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Data manipulation and analysis library offering data structures like DataFrames for efficient data handling.</p>
+          <a href="https://github.com/pandas-dev/pandas/blob/main/LICENSE" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>SciPy</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Scientific computing library built on NumPy with modules for optimization, linear algebra, and signal processing.</p>
+          <a href="https://github.com/scipy/scipy/blob/main/LICENSE.txt" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>joblib</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Lightweight library for parallel computing and memory-efficient I/O operations on large datasets.</p>
+          <a href="https://github.com/joblib/joblib/blob/main/LICENSE" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>XGBoost</h3>
+          <div class="spdx-id">Apache-2.0</div>
+          <p>Optimized distributed gradient boosting library for classification, regression, and ranking tasks at scale.</p>
+          <a href="https://github.com/dmlc/xgboost/blob/master/LICENSE" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>Docker</h3>
+          <div class="spdx-id">Apache-2.0</div>
+          <p>Containerization platform enabling consistent deployment and isolation of applications across environments.</p>
+          <a href="https://github.com/moby/moby/blob/master/LICENSE" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>Seaborn</h3>
+          <div class="spdx-id">BSD-3-Clause</div>
+          <p>Statistical data visualization library built on Matplotlib for creating informative graphics from data.</p>
+          <a href="https://github.com/mwaskom/seaborn/blob/master/LICENSE.md" target="_blank">View License →</a>
+        </div>
+
+        <div class="component-card">
+          <h3>Matplotlib</h3>
+          <div class="spdx-id">PSF-2.0</div>
+          <p>Comprehensive 2D plotting library for creating static, animated, and interactive visualizations in Python.</p>
+          <a href="https://github.com/matplotlib/matplotlib/blob/main/LICENSE/LICENSE" target="_blank">View License →</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="updated-date">Last Updated: April 8, 2026</p>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Company</strong>
+        <a href="/">Home</a>
+        <a href="/opensource">Open Source</a>
+        <a href="/security">Security</a>
+      </div>
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Legal</strong>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
+        <a href="#" data-ct="show">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pareskope. A Kolidiscope, Inc. company.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;
+      document.querySelectorAll('a[data-ct]').forEach(function(a){
+        a.href=m;
+        if(a.dataset.ct==='show')a.textContent=e;
+      });
+    })();
+  </script>
+</body>
+</html>

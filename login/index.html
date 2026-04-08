@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta property="og:title" content="Sign In - Pareskope">
+  <meta property="og:description" content="Access your Pareskope account.">
+  <meta property="og:url" content="https://www.pareskope.com/login">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Sign In - Pareskope</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1120;
+      color: #e8edf5;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header with Logo */
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #1c2940;
+      background-color: rgba(20, 29, 48, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 700;
+      color: #e8edf5;
+      font-size: 1.25rem;
+      width: fit-content;
+      transition: color 0.3s;
+    }
+
+    .header-logo:hover {
+      color: #10b981;
+    }
+
+    .header-logo img {
+      height: 32px;
+      margin-right: 0.75rem;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Login Card */
+    .login-card {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
+    }
+
+    .login-card h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: #e8edf5;
+    }
+
+    .login-card p {
+      color: #8892a4;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: #e8edf5;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #0f1622;
+      border: 1px solid #1c2940;
+      border-radius: 6px;
+      color: #e8edf5;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+      background-color: rgba(16, 185, 129, 0.02);
+    }
+
+    .form-group input::placeholder {
+      color: #8892a4;
+    }
+
+    /* Checkbox Group */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-right: 0.5rem;
+      cursor: pointer;
+      accent-color: #10b981;
+    }
+
+    .checkbox-group label {
+      margin-bottom: 0 !important;
+      color: #8892a4;
+      font-weight: 400;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Links Row */
+    .links-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+
+    .links-row a {
+      color: #0ea5e9;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .links-row a:hover {
+      color: #10b981;
+    }
+
+    /* Sign In Button */
+    .sign-in-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      margin-bottom: 1.5rem;
+    }
+
+    .sign-in-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      color: #8892a4;
+      font-size: 0.85rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #1c2940;
+    }
+
+    .divider span {
+      padding: 0 1rem;
+    }
+
+    /* SFTP Upload Link */
+    .sftp-link {
+      display: block;
+      padding: 1rem;
+      background-color: rgba(16, 185, 129, 0.05);
+      border: 1px solid #1c2940;
+      border-radius: 6px;
+      color: #0ea5e9;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .sftp-link:hover {
+      background-color: rgba(16, 185, 129, 0.1);
+      border-color: #10b981;
+      color: #10b981;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f1622;
+      border-top: 1px solid #1c2940;
+      padding: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1c2940;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: #8892a4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #10b981;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #8892a4;
+      font-size: 0.85rem;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 1.5rem 1rem;
+      }
+
+      .login-card {
+        padding: 2rem;
+      }
+
+      .login-card h1 {
+        font-size: 1.5rem;
+      }
+
+      .links-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="header-logo">
+      <img src="/logo.png" alt="Pareskope Logo">
+      Pareskope
+    </a>
+  </header>
+
+  <main>
+    <div class="login-container">
+      <div class="login-card">
+        <h1>Sign In</h1>
+        <p>Access your Pareskope account to manage data and research workflows.</p>
+
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@example.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            >
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+          </div>
+
+          <div class="links-row">
+            <a href="#" data-ct="show">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="sign-in-btn">Sign In</button>
+        </form>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <a href="/sftp" class="sftp-link">Upload Data via SFTP</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Company</strong>
+        <a href="/">Home</a>
+      </div>
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Legal</strong>
+        <a href="/security">Security</a>
+        <a href="/privacy">Privacy</a>
+        <a href="#" data-ct="show">Support</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pareskope. A Kolidiscope, Inc. company.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;
+      document.querySelectorAll('a[data-ct]').forEach(function(a){
+        a.href=m;
+        if(a.dataset.ct==='show')a.textContent=e;
+      });
+    })();
+  </script>
+</body>
+</html>

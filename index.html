@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pareskope — Data Product Intelligence for Financial Services. Optimize data products, prove their value, and accelerate your data business.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="Pareskope — Data Product Intelligence for Financial Services">
+    <meta property="og:description" content="Optimize your data products, prove their value, and accelerate your data business.">
+    <meta property="og:url" content="https://www.pareskope.com">
+    <meta property="og:image" content="https://www.pareskope.com/og-image.png">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Pareskope — Data Product Intelligence for Financial Services</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1120;
+            color: #e8edf5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 20px;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            color: white;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+
+        .button-secondary {
+            background: transparent;
+            color: #10b981;
+            border: 2px solid #10b981;
+        }
+
+        .button-secondary:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(28, 41, 64, 0.5);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e8edf5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #10b981;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-cta a:not(.button) {
+                display: none;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #8892a4;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* METRICS */
+        .metrics {
+            padding: 80px 20px;
+            background-color: #141d30;
+            border-top: 1px solid #1c2940;
+            border-bottom: 1px solid #1c2940;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #8892a4;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .metric-value {
+                font-size: 36px;
+            }
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #8892a4;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #141d30;
+            border: 1px solid #1c2940;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #8892a4;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(14, 165, 233, 0.03) 100%);
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        .step-card {
+            background: #141d30;
+            border: 1px solid #1c2940;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .step-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: #8892a4;
+        }
+
+        .step-connector {
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, transparent);
+            transform: translateY(-50%);
+        }
+
+        .step-card:last-child .step-connector {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step-connector {
+                display: none !important;
+            }
+        }
+
+        /* USE CASES */
+        .use-cases {
+            padding: 80px 20px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .use-case-card {
+            background: #141d30;
+            border: 1px solid #1c2940;
+            border-left: 4px solid #10b981;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .use-case-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .use-case-card p {
+            font-size: 14px;
+            color: #8892a4;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SECURITY */
+        .security {
+            padding: 80px 20px;
+            background: #141d30;
+            border-top: 1px solid #1c2940;
+            border-bottom: 1px solid #1c2940;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .security-item {
+            text-align: center;
+        }
+
+        .security-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .security-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .security-item p {
+            font-size: 13px;
+            color: #8892a4;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .about p {
+            font-size: 16px;
+            color: #8892a4;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+            border-top: 1px solid #1c2940;
+            border-bottom: 1px solid #1c2940;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: #8892a4;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-content h2 {
+                font-size: 32px;
+            }
+
+            .cta-content p {
+                font-size: 16px;
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0a0f1f;
+            border-top: 1px solid #1c2940;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: #8892a4;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: #8892a4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #10b981;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 24px;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .steps-grid {
+                gap: 20px;
+            }
+
+            .step-connector {
+                width: 40px;
+                right: -20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <img src="logo.png" alt="Pareskope" class="logo">
+            <ul class="nav-links">
+                <li><a href="#product">Product</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="/login">Client Login</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" data-ct="link" class="button button-primary">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">Data Product Intelligence</div>
+            <h1>Optimize your data products. <span class="gradient-text">Prove their value.</span></h1>
+            <p class="hero-subtitle">Accelerate your financial data business. Optimize waterfalls, monitor scoring models, and automate prospective studies for data vendors serving credit decisioning and alternative data markets.</p>
+            <div class="hero-buttons">
+                <a href="#" data-ct="link" class="button button-primary">Request Demo</a>
+                <a href="#" data-ct="link" class="button button-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <div class="metric-value">90%</div>
+                <div class="metric-label">Faster study turnaround</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">100+</div>
+                <div class="metric-label">Data studies automated</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">Ongoing</div>
+                <div class="metric-label">Scheduled model performance tracking</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="product">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comprehensive Data Product Tools</h2>
+                <p>Everything you need to optimize, monitor, and monetize your financial data products</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Waterfall Decisioning & Optimization</h3>
+                    <p>Optimize credit decision waterfalls. Maximize approval volume while maintaining your risk tolerance and data cost efficiency across scoring models.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Scoring Model & Attribute Monitoring</h3>
+                    <p>Track predictive lift and KS statistics in real-time. Monitor attribute performance post-deployment to ensure your models maintain edge.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Prospective Studies & Reporting</h3>
+                    <p>Automate prospective analysis. Generate client-ready reports that prove data product value and demonstrate competitive advantage in your market.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Cutoff Optimization</h3>
+                    <p>Fine-tune decision thresholds to balance approval rates with risk profiles. Test multiple scenarios and compare outcomes instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Scoring & Integration</h3>
+                    <p>Seamless integration with your data pipeline. Deploy models directly and monitor performance across your customer base in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud-Hosted Platform</h3>
+                    <p>Enterprise-grade infrastructure. Secure, scalable, and reliable platform for managing your entire data product lifecycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+        <div class="steps-container">
+            <div class="section-header">
+                <h2>How Pareskope Works</h2>
+                <p>Four simple steps to optimize and monetize your data products</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Connect Your Data</h3>
+                    <p>Securely integrate your data sources and scoring models into the Pareskope platform.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Run Prospective Studies</h3>
+                    <p>Analyze predictive lift, measure KS statistics, and evaluate data product performance.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Optimize & Recommend</h3>
+                    <p>Get AI-powered recommendations to optimize waterfalls, cutoffs, and decision strategies.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h3>Deliver & Monitor</h3>
+                    <p>Deploy optimized models and track ongoing performance with continuous monitoring dashboards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Use Cases for Financial Data Vendors</h2>
+                <p>Accelerate your data business with Pareskope</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <h3>Prove Data Product Lift</h3>
+                    <p>Demonstrate the tangible business value of your alternative data and scoring products to prospects. Win deals faster with data-backed evidence of approval volume uplift and risk reduction.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Optimize for New Customer Segments</h3>
+                    <p>Expand addressable market by tailoring data products to specific customer segments. Optimize decision waterfalls for different risk profiles and pricing strategies.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Monitor Post-Sale Performance</h3>
+                    <p>Track your data product performance across customer deployments. Proactively identify performance issues and optimize scoring model attributes in real-time.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Accelerate Sales Cycles</h3>
+                    <p>Reduce time-to-decision for prospects. Deliver comprehensive prospective studies in hours, not weeks. Close deals faster and increase conversion rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="security" id="security">
+        <div class="container">
+            <div class="section-header">
+                <h2>Enterprise-Grade Security</h2>
+                <p>Your data and intellectual property are protected with industry-leading security practices</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">🔐</div>
+                    <h3>Encryption</h3>
+                    <p>End-to-end encryption for data in transit and at rest. FIPS 140-2 compliant security standards.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🏢</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Enterprise-grade cloud hosting with automatic backups, redundancy, and disaster recovery built-in.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🔒</div>
+                    <h3>Access Controls</h3>
+                    <p>Role-based access control (RBAC), audit logging, and comprehensive permission management for your team.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">📋</div>
+                    <h3>Data Handling</h3>
+                    <p>Strict data residency requirements, compliance with GLBA and FCRA standards, and transparent data policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>Pareskope — A Kolidiscope Company</h2>
+            <p>Pareskope is built by Kolidiscope, a team of data product and fintech veterans who understand the challenges of managing, optimizing, and selling financial data and risk intelligence products.</p>
+            <p>We've worked with leading financial institutions, credit bureaus, and alternative data providers. Pareskope brings years of expertise into a platform designed specifically for data vendors serving credit decisioning, scoring, and alternative data markets.</p>
+            <p>Learn more at <a href="https://kolidiscope.com" style="color: #10b981; text-decoration: none;">kolidiscope.com</a></p>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to accelerate your data business?</h2>
+            <p>Get started with Pareskope today. Our team is ready to help you optimize your data products and prove their value.</p>
+            <a href="#" data-ct="link" class="button button-primary">Contact Sales</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2026 Pareskope. A Kolidiscope, Inc. company.
+            </div>
+            <div class="footer-links">
+                <a href="#" data-ct="link">Open Source</a>
+                <a href="#security">Security</a>
+                <a href="#" data-ct="link">FAQ</a>
+                <a href="#" data-ct="link">Privacy</a>
+                <a href="#" data-ct="link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Email Obfuscation Script -->
+    <script>
+        (function(){var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;document.querySelectorAll('a[data-ct]').forEach(function(a){a.href=m;if(a.dataset.ct==='show')a.textContent=e;});})();
+    </script>
+</body>
+</html>

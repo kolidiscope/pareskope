@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta property="og:title" content="Security & SDLC Practices - Pareskope">
+  <meta property="og:description" content="Learn about Pareskope's security practices, infrastructure, and software development lifecycle.">
+  <meta property="og:url" content="https://www.pareskope.com/security">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Security & SDLC Practices - Pareskope</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1120;
+      color: #e8edf5;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: rgba(20, 29, 48, 0.5);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1c2940;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 700;
+      color: #e8edf5;
+      font-size: 1.25rem;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      margin-right: 0.5rem;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #8892a4;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #10b981;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #1c2940;
+      padding-bottom: 2rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: #8892a4;
+      font-size: 1rem;
+      max-width: 700px;
+    }
+
+    /* Section */
+    .security-section {
+      margin-bottom: 4rem;
+    }
+
+    .security-section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: #e8edf5;
+      border-left: 4px solid #10b981;
+      padding-left: 1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .practice-card {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .practice-card:hover {
+      border-color: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+    }
+
+    .practice-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: #10b981;
+    }
+
+    .practice-card p {
+      color: #8892a4;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Text Content Section */
+    .text-content {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .text-content h3 {
+      color: #10b981;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .text-content p {
+      color: #8892a4;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .text-content ul {
+      color: #8892a4;
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* SBOM Section */
+    .sbom-callout {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      border: 1px solid #1c2940;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .sbom-callout h3 {
+      color: #10b981;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .sbom-callout p {
+      color: #8892a4;
+      margin-bottom: 1rem;
+    }
+
+    .sbom-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .sbom-link:hover {
+      opacity: 0.9;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background-color: #141d30;
+      border: 1px solid #1c2940;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .contact-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #e8edf5;
+    }
+
+    .contact-section p {
+      color: #8892a4;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      color: #0b1120;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .contact-email:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f1622;
+      border-top: 1px solid #1c2940;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #1c2940;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: #8892a4;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #10b981;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #8892a4;
+      font-size: 0.85rem;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      main {
+        padding: 1.5rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .security-section h2 {
+        font-size: 1.3rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .text-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="Pareskope Logo">
+      Pareskope
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/opensource">Open Source</a></li>
+      <li><a href="/security">Security</a></li>
+    </ul>
+    <a href="/" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Security & SDLC Practices</h1>
+      <p>Pareskope is built with security at every layer—from software development through infrastructure and data handling. Learn how we protect your data and maintain the highest standards of operational security.</p>
+    </div>
+
+    <!-- SDLC Section -->
+    <div class="security-section">
+      <h2>Software Development Lifecycle (SDLC)</h2>
+      <div class="cards-grid">
+        <div class="practice-card">
+          <h3>Version Control</h3>
+          <p>All code is tracked in a centralized Git repository with comprehensive audit logs. Every change is attributed and timestamped for full traceability and accountability.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Code Review</h3>
+          <p>Mandatory peer review process ensures code quality and security. All pull requests require approval from senior engineers before merging to production branches.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Automated Testing</h3>
+          <p>Comprehensive test suite with unit, integration, and end-to-end tests runs automatically on every commit. Coverage monitoring ensures critical paths are tested.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Staging & Validation</h3>
+          <p>All changes pass through isolated staging environments that mirror production. Full regression testing and security scanning occurs before any production deployment.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Containerized Deployments</h3>
+          <p>Docker containers ensure consistency across development, testing, and production. Container images are scanned for vulnerabilities before deployment.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Monitoring & Incident Response</h3>
+          <p>Real-time monitoring with automated alerting detects anomalies immediately. Our incident response team is on-call 24/7 for rapid threat mitigation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infrastructure Security Section -->
+    <div class="security-section">
+      <h2>Infrastructure Security</h2>
+      <div class="cards-grid">
+        <div class="practice-card">
+          <h3>Encryption</h3>
+          <p>All data is encrypted at rest using AES-256 and in transit using TLS 1.3. Cryptographic keys are managed with industry-standard key rotation policies.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Cloud Hosting</h3>
+          <p>Pareskope runs on secure, compliant cloud infrastructure with physical security controls, automatic backups, and disaster recovery capabilities.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Access Controls</h3>
+          <p>Role-based access control (RBAC) limits data access to authorized personnel only. Multi-factor authentication (MFA) is required for all administrative access.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Tenant Isolation</h3>
+          <p>Each customer's data is logically isolated in our multi-tenant architecture. Network segmentation and database-level access controls prevent cross-tenant data leakage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open Source Component Management -->
+    <div class="security-section">
+      <h2>Open Source Component Management</h2>
+      <div class="cards-grid">
+        <div class="practice-card">
+          <h3>Component Inventory</h3>
+          <p>We maintain a complete inventory of all open source dependencies with detailed version tracking. Automated tooling tracks changes to our dependency tree.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>License Compliance</h3>
+          <p>All dependencies are evaluated for license compatibility. We ensure compliance with BSD-3-Clause, Apache-2.0, PSF-2.0, and other permissive licenses.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Vulnerability Scanning</h3>
+          <p>Continuous vulnerability scanning identifies CVEs in dependencies. Automated alerts notify our team of critical issues requiring immediate patches.</p>
+        </div>
+
+        <div class="practice-card">
+          <h3>Version Management</h3>
+          <p>We follow semantic versioning and maintain update schedules for all dependencies. Critical security patches are deployed within 24 hours of release.</p>
+        </div>
+      </div>
+
+      <div class="sbom-callout">
+        <h3>Software Bill of Materials (SBOM)</h3>
+        <p>Pareskope publishes a comprehensive SBOM documenting all components, versions, and licenses. Our SBOM is updated regularly and available for audit.</p>
+        <a href="/opensource" class="sbom-link">View SBOM & Attributions →</a>
+      </div>
+    </div>
+
+    <!-- Data Handling & Retention -->
+    <div class="security-section">
+      <h2>Data Handling & Retention</h2>
+      <div class="text-content">
+        <h3>Data Protection Principles</h3>
+        <p>Pareskope implements data protection by design. We apply the principle of least privilege, accessing only data necessary for specific operations. Customer data is:</p>
+        <ul>
+          <li><strong>Encrypted at rest</strong> using AES-256 encryption</li>
+          <li><strong>Encrypted in transit</strong> using TLS 1.3</li>
+          <li><strong>Segmented by tenant</strong> with logical isolation</li>
+          <li><strong>Backed up redundantly</strong> in geographically distributed locations</li>
+          <li><strong>Logged and audited</strong> with immutable access records</li>
+        </ul>
+
+        <h3>Retention Policies</h3>
+        <p>Data retention follows customer agreements and regulatory requirements. Customers control their data lifecycle with options to export or delete at any time. Upon request or contract termination, we securely purge all customer data within 30 days using cryptographic erasure.</p>
+
+        <h3>Compliance & Certifications</h3>
+        <p>Pareskope adheres to security best practices aligned with industry standards. We are committed to continuous improvement of our security posture through regular assessments and third-party audits.</p>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+      <h3>Security Questions?</h3>
+      <p>Have questions about our security practices, compliance, or need to report a vulnerability? Our security team is here to help.</p>
+      <a href="#" data-ct="show" class="contact-email">Get in Touch</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Company</strong>
+        <a href="/">Home</a>
+        <a href="/opensource">Open Source</a>
+        <a href="/security">Security</a>
+      </div>
+      <div class="footer-links">
+        <strong style="color: #e8edf5; margin-bottom: 0.5rem;">Legal</strong>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
+        <a href="#" data-ct="show">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pareskope. A Kolidiscope, Inc. company.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;
+      document.querySelectorAll('a[data-ct]').forEach(function(a){
+        a.href=m;
+        if(a.dataset.ct==='show')a.textContent=e;
+      });
+    })();
+  </script>
+</body>
+</html>
