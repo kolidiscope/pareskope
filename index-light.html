@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pareskope — Data Product Intelligence for Financial Services. Optimize data products, prove their value, and accelerate your data business.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+    <meta property="og:title" content="Pareskope — Data Product Intelligence for Financial Services">
+    <meta property="og:description" content="Optimize your data products, prove their value, and accelerate your data business.">
+    <meta property="og:url" content="https://www.pareskope.com">
+    <meta property="og:image" content="https://www.pareskope.com/og-image.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <title>Pareskope — Data Product Intelligence for Financial Services</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --bg: #FAFAF7;
+            --bg-alt: #F0EFEB;
+            --bg-card: #FFFFFF;
+            --text: #1A1A2E;
+            --text-muted: #5C5C6F;
+            --text-light: #8A8A9A;
+            --accent: #10b981;
+            --accent-hover: #0d9668;
+            --border: #E4E3DF;
+            --border-light: #EEEDEA;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 2.5rem;
+            background: rgba(250, 250, 247, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 32px;
+            width: auto;
+            filter: brightness(0);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            padding: 0.55rem 1.4rem;
+            background: var(--text);
+            color: var(--bg) !important;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 11rem 2rem 6rem;
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 0.85rem 2.25rem;
+            background: var(--text);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .hero-cta:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider {
+            max-width: 860px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ─── METRICS ─── */
+        .metrics {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            letter-spacing: 0.02em;
+        }
+
+        /* ─── SECTIONS ─── */
+        .section {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .section h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+
+        .section > p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* ─── FEATURE ROWS (stacked, not grid) ─── */
+        .feature-row {
+            display: flex;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-light);
+            align-items: flex-start;
+        }
+
+        .feature-row:last-child {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .feature-number {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            flex-shrink: 0;
+            width: 3rem;
+            padding-top: 0.1rem;
+        }
+
+        .feature-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .feature-body p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ─── HOW IT WORKS (steps) ─── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .step {
+            padding: 2rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+        }
+
+        .step-num {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .step h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ─── USE CASES (alternating layout) ─── */
+        .use-case {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .use-case:last-child {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .use-case h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .use-case p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            max-width: 640px;
+        }
+
+        /* ─── SECURITY ─── */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .security-card {
+            padding: 1.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+        }
+
+        .security-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .security-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ─── ABOUT ─── */
+        .about-section {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .about-inner h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-inner p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .about-inner a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .about-inner a:hover { text-decoration: underline; }
+
+        /* ─── CTA ─── */
+        .final-cta {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta a {
+            display: inline-block;
+            padding: 0.85rem 2.25rem;
+            background: var(--text);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .final-cta a:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner span {
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .metrics { grid-template-columns: 1fr; gap: 1.5rem; }
+            .steps { grid-template-columns: 1fr 1fr; }
+            .security-grid { grid-template-columns: 1fr; }
+            .feature-row { flex-direction: column; gap: 0.75rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="/" class="nav-logo">
+        <img src="logo.png" alt="Pareskope">
+    </a>
+    <ul class="nav-links">
+        <li><a href="#product">Product</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/login" class="nav-cta">Client Login</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Optimize your data products.<br><em>Prove their value.</em></h1>
+    <p>Accelerate your financial data business. Optimize waterfalls, monitor scoring models, and automate prospective studies for data vendors serving credit decisioning and alternative data markets.</p>
+    <a href="#" data-ct="link" class="hero-cta">Request a Demo</a>
+</section>
+
+<hr class="divider">
+
+<!-- METRICS -->
+<div class="metrics">
+    <div>
+        <div class="metric-value">90%</div>
+        <div class="metric-label">Faster study turnaround</div>
+    </div>
+    <div>
+        <div class="metric-value">100+</div>
+        <div class="metric-label">Data studies automated</div>
+    </div>
+    <div>
+        <div class="metric-value">Ongoing</div>
+        <div class="metric-label">Scheduled performance tracking</div>
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- PRODUCT -->
+<section class="section" id="product">
+    <div class="section-label">Platform</div>
+    <h2>Comprehensive data product tools</h2>
+    <p>Everything you need to optimize, monitor, and monetize your financial data products.</p>
+
+    <div class="feature-row">
+        <div class="feature-number">01</div>
+        <div class="feature-body">
+            <h3>Waterfall Decisioning &amp; Optimization</h3>
+            <p>Optimize credit decision waterfalls. Maximize approval volume while maintaining your risk tolerance and data cost efficiency across scoring models.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <div class="feature-number">02</div>
+        <div class="feature-body">
+            <h3>Scoring Model &amp; Attribute Monitoring</h3>
+            <p>Track predictive lift and KS statistics over time. Monitor attribute performance post-deployment to ensure your models maintain edge.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <div class="feature-number">03</div>
+        <div class="feature-body">
+            <h3>Prospective Studies &amp; Reporting</h3>
+            <p>Automate prospective analysis. Generate client-ready reports that prove data product value and demonstrate competitive advantage in your market.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <div class="feature-number">04</div>
+        <div class="feature-body">
+            <h3>Cutoff Optimization</h3>
+            <p>Fine-tune decision thresholds to balance approval rates with risk profiles. Test multiple scenarios and compare outcomes instantly.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <div class="feature-number">05</div>
+        <div class="feature-body">
+            <h3>Scoring &amp; Integration</h3>
+            <p>Seamless integration with your data pipeline. Deploy models directly and monitor performance across your customer base.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <div class="feature-number">06</div>
+        <div class="feature-body">
+            <h3>Cloud-Hosted Platform</h3>
+            <p>Enterprise-grade infrastructure. Secure, scalable, and reliable platform for managing your entire data product lifecycle.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+    <div class="section-label">Process</div>
+    <h2>How Pareskope works</h2>
+    <p>Four steps to optimize and monetize your data products.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Connect Your Data</h3>
+            <p>Securely integrate your data sources and scoring models into the Pareskope platform.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Run Studies</h3>
+            <p>Analyze predictive lift, measure KS statistics, and evaluate data product performance.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Optimize</h3>
+            <p>Get recommendations to optimize waterfalls, cutoffs, and decision strategies.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <h3>Deliver &amp; Monitor</h3>
+            <p>Deploy optimized models and track ongoing performance with scheduled monitoring.</p>
+        </div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section class="section" id="use-cases">
+    <div class="section-label">Use Cases</div>
+    <h2>Built for financial data vendors</h2>
+    <p>Accelerate your data business with Pareskope.</p>
+
+    <div class="use-case">
+        <h3>Prove Data Product Lift</h3>
+        <p>Demonstrate tangible business value of your alternative data and scoring products to prospects. Win deals faster with data-backed evidence of approval volume uplift and risk reduction.</p>
+    </div>
+    <div class="use-case">
+        <h3>Optimize for New Customer Segments</h3>
+        <p>Expand addressable market by tailoring data products to specific customer segments. Optimize decision waterfalls for different risk profiles and pricing strategies.</p>
+    </div>
+    <div class="use-case">
+        <h3>Monitor Post-Sale Performance</h3>
+        <p>Track your data product performance across customer deployments. Proactively identify issues and optimize scoring model attributes over time.</p>
+    </div>
+    <div class="use-case">
+        <h3>Accelerate Sales Cycles</h3>
+        <p>Reduce time-to-decision for prospects. Deliver comprehensive prospective studies in hours, not weeks.</p>
+    </div>
+</section>
+
+<!-- SECURITY -->
+<section class="section" id="security">
+    <div class="section-label">Security</div>
+    <h2>Enterprise-grade security</h2>
+    <p>Your data and intellectual property are protected with industry-leading practices.</p>
+
+    <div class="security-grid">
+        <div class="security-card">
+            <h3>Encryption</h3>
+            <p>End-to-end encryption for data in transit (TLS 1.2+) and at rest (AES-256). FIPS 140-2 compliant security standards.</p>
+        </div>
+        <div class="security-card">
+            <h3>Cloud Infrastructure</h3>
+            <p>SOC 2-compliant cloud hosting with automatic backups, redundancy, and disaster recovery built-in.</p>
+        </div>
+        <div class="security-card">
+            <h3>Access Controls</h3>
+            <p>Role-based access control, audit logging, and comprehensive permission management for your team.</p>
+        </div>
+        <div class="security-card">
+            <h3>Data Handling</h3>
+            <p>Strict data residency requirements, compliance with GLBA and FCRA standards, and transparent data policies.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+    <div class="about-inner">
+        <h2>A Kolidiscope Company</h2>
+        <p>Pareskope is built by Kolidiscope, a team of data product and fintech veterans who understand the challenges of managing, optimizing, and selling financial data and risk intelligence products.</p>
+        <p>We've worked with leading financial institutions, credit bureaus, and alternative data providers. Pareskope brings years of expertise into a platform designed specifically for data vendors serving credit decisioning, scoring, and alternative data markets.</p>
+        <p><a href="https://kolidiscope.com">kolidiscope.com</a></p>
+    </div>
+</div>
+
+<!-- CTA -->
+<section class="final-cta">
+    <h2>Ready to accelerate your data business?</h2>
+    <p>Our team is ready to help you optimize your data products and prove their value.</p>
+    <a href="#" data-ct="link">Contact Sales</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span>&copy; 2026 Pareskope. A Kolidiscope, Inc. company.</span>
+        <div class="footer-links">
+            <a href="/opensource">Open Source</a>
+            <a href="/security">Security</a>
+            <a href="/faq">FAQ</a>
+            <a href="/privacy">Privacy</a>
+            <a href="#" data-ct="link">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function(){var u='info',d='pareskope.com',e=u+'@'+d,m='mail'+'to:'+e;document.querySelectorAll('a[data-ct]').forEach(function(a){a.href=m;if(a.dataset.ct==='show')a.textContent=e;});})();
+</script>
+</body>
+</html>
